@@ -32,7 +32,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/BobbyShaftoe/spring-dbstarter">
-    <img src="images/db.png" alt="Logo" height="280">
+    <img src="images/db.png" alt="Logo" width="100%">
   </a>
 
 <h3 align="center">Spring DB Starter</h3>
