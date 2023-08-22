@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+      lang="en">
+
+<body id="page-top">
+<section layout:fragment="body">
+    <!-- Page content-->
+    <div class="container">
+        <div class="text-center mt-5">
+            <h1>Spring Boot DB Starter</h1>
+            <p class="lead">All users returned from database query</p>
+            <p>Spring Boot 2</p>
+        </div>
+    </div>
+    <div class="container p-4">
+        <div th:if="${Users.size() > 0}">
+            <table class="table table-hover table-responsive-xl">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Age</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${Users}">
+                    <th scope="row">[[${user.firstName}]]</th>
+                    <td>[[${user.lastName}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.age}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
