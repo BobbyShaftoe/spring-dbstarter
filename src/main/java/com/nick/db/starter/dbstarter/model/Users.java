@@ -54,8 +54,7 @@ public class Users {
     @Column(name = "age", nullable = false)
     private Integer age;
 
-    public Users(Long id, String firstName, String lastName, String email, Integer age) {
-        this.id = id;
+    public Users(String firstName, String lastName, String email, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
