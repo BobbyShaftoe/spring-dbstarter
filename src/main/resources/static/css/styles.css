@@ -61,7 +61,7 @@
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
-    --bs-body-color: #212529;
+    --bs-body-color: var(--bs-gray-800);
     --bs-body-bg: #fff;
     --bs-border-width: 1px;
     --bs-border-style: solid;
@@ -97,7 +97,7 @@ body {
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
-    color: var(--bs-body-color);
+    color: var(--bs-gray-800);
     text-align: var(--bs-body-text-align);
     background-color: var(--bs-body-bg);
     -webkit-text-size-adjust: 100%;
@@ -117,6 +117,10 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-bottom: 0.5rem;
     font-weight: 500;
     line-height: 1.2;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    color: var(--bs-gray-700);
 }
 
 h1, .h1 {
@@ -140,12 +144,12 @@ h2, .h2 {
 }
 
 h3, .h3 {
-    font-size: calc(1.3rem + 0.6vw);
+    font-size: calc(1.28rem + 0.45vw);
 }
 
 @media (min-width: 1200px) {
     h3, .h3 {
-        font-size: 1.75rem;
+        font-size: 1.65rem;
     }
 }
 

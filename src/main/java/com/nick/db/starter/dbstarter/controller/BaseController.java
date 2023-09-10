@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.nick.db.starter.dbstarter.model.Users;
 import com.nick.db.starter.dbstarter.repository.UsersRepository;
+import com.nick.db.starter.dbstarter.service.DataLoaderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -33,6 +38,7 @@ public class BaseController {
     private String page;
 
     private final UsersRepository usersRepository;
+    private final DataLoaderService dataLoaderService;
 
 
     /**
@@ -41,9 +47,10 @@ public class BaseController {
      * @throws JsonProcessingException
      *         JSON encoding exception
      */
-    private BaseController(UsersRepository usersRepository) throws JsonProcessingException {
+    private BaseController(UsersRepository usersRepository, DataLoaderService dataLoaderService) throws JsonProcessingException {
 
         this.usersRepository = usersRepository;
+        this.dataLoaderService = dataLoaderService;
     }
 
 
@@ -84,6 +91,24 @@ public class BaseController {
         model.addAttribute("SpringBoot", true);
         model.addAttribute("Users", allUsers);
         page = "users";
+        return page;
+    }
+
+    @GetMapping("/load-users")
+    public String loadUsers(Model model, HttpServletResponse response, HttpServletRequest httpServletRequest) {
+
+        System.out.println(model.toString());
+
+        ArrayList<Users> usersList = dataLoaderService.loadUsersFromCSV("users.csv");
+        HashMap<String, ArrayList<Users>> savedUsersToDB = dataLoaderService.saveUsersToDB(usersList);
+
+        System.out.println("New users added: " + savedUsersToDB.get("usersToAdd"));
+        System.out.println("Users already exist in database: " + savedUsersToDB.get("usersAlreadyExist"));
+
+        model.addAttribute("SpringBoot", true);
+        model.addAttribute("UsersAdded", savedUsersToDB.get("usersToAdd"));
+        model.addAttribute("UsersExist", savedUsersToDB.get("usersAlreadyExist"));
+        page = "load-users";
         return page;
     }
 
