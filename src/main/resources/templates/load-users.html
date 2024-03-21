@@ -14,8 +14,8 @@
         </div>
     </div>
     <div class="container p-4">
-        <h3 th:text="'Total users in database: ' + ${Users.size()}"></h3>
-        <div th:if="${Users.size() > 0}">
+        <h3 th:text="'Total users loaded into database: ' + ${UsersAdded.size}"></h3>
+        <div th:if="${UsersAdded.size() > 0}">
             <table class="table table-hover table-responsive-xl">
                 <thead class="thead-light">
                 <tr>
@@ -23,11 +23,34 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Email Address</th>
                     <th scope="col">Age</th>
-
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${Users}">
+                <tr th:each="user : ${UsersAdded}">
+                    <td>[[${user.firstName}]]</td>
+                    <td>[[${user.lastName}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.age}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+
+        <h3 th:text="'Total users already in database: ' + ${UsersExist.size}"></h3>
+        <div th:if="${UsersExist.size() > 0}">
+            <table class="table table-hover table-responsive-xl">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Age</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${UsersExist}">
                     <td>[[${user.firstName}]]</td>
                     <td>[[${user.lastName}]]</td>
                     <td>[[${user.email}]]</td>
